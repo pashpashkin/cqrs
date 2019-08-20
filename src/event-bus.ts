@@ -50,7 +50,7 @@ export class EventBus extends ObservableBus<IEvent>
   }
 
   publishAll(events: IEvent[]) {
-    (events || []).forEach(event => this._publisher.publish(event));
+    this._publisher.publishAll(events);
   }
 
   bind(handler: IEventHandler<IEvent>, name: string) {

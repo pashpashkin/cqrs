@@ -16,9 +16,12 @@ export abstract class AggregateRoot {
   }
 
   publish(event: IEvent) {}
+  publishAll(events: IEvent[]) {}
 
   commit() {
-    this[INTERNAL_EVENTS].forEach(event => this.publish(event));
+    if (this[INTERNAL_EVENTS]) {
+      this.publishAll(this[INTERNAL_EVENTS]);
+    }
     this[INTERNAL_EVENTS].length = 0;
   }
 

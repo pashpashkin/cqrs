@@ -11,6 +11,13 @@ export class DefaultPubSub implements IEventPublisher, IMessageSource {
     this.subject$.next(event);
   }
 
+  publishAll<T extends IEvent>(events: T[]) {
+    if (!this.subject$) {
+      throw new Error('Invalid underlying subject (call bridgeEventsTo())');
+    }
+    (events || []).forEach(event => this.subject$.next(event));
+  }
+
   bridgeEventsTo<T extends IEvent>(subject: Subject<T>) {
     this.subject$ = subject;
   }
