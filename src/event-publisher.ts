@@ -17,6 +17,9 @@ export class EventPublisher {
       publish(event: IEvent) {
         eventBus.publish(event);
       }
+      publishAll(events: IEvent[]) {
+        eventBus.publishAll(events);
+      }
     };
   }
 
@@ -24,6 +27,9 @@ export class EventPublisher {
     const eventBus = this.eventBus;
     object.publish = (event: IEvent) => {
       eventBus.publish(event);
+    };
+    object.publishAll = (events: IEvent[]) => {
+      eventBus.publishAll(events);
     };
     return object;
   }
