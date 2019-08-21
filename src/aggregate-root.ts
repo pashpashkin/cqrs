@@ -16,11 +16,11 @@ export abstract class AggregateRoot {
   }
 
   publish(event: IEvent) {}
-  publishAll(events: IEvent[]) {}
+  async publishAll(events: IEvent[]): Promise<void> {}
 
-  commit() {
+  async commit() {
     if (this[INTERNAL_EVENTS]) {
-      this.publishAll(this[INTERNAL_EVENTS]);
+      await this.publishAll(this[INTERNAL_EVENTS]);
     }
     this[INTERNAL_EVENTS].length = 0;
   }

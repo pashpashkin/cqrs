@@ -17,8 +17,8 @@ export class EventPublisher {
       publish(event: IEvent) {
         eventBus.publish(event);
       }
-      publishAll(events: IEvent[]) {
-        eventBus.publishAll(events);
+      async publishAll(events: IEvent[]) {
+        await eventBus.publishAll(events);
       }
     };
   }
@@ -28,8 +28,8 @@ export class EventPublisher {
     object.publish = (event: IEvent) => {
       eventBus.publish(event);
     };
-    object.publishAll = (events: IEvent[]) => {
-      eventBus.publishAll(events);
+    object.publishAll = async (events: IEvent[]) => {
+      await eventBus.publishAll(events);
     };
     return object;
   }

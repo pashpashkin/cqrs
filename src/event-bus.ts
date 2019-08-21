@@ -49,8 +49,8 @@ export class EventBus extends ObservableBus<IEvent>
     this._publisher.publish(event);
   }
 
-  publishAll(events: IEvent[]) {
-    this._publisher.publishAll(events);
+  async publishAll(events: IEvent[]) {
+    await this._publisher.publishAll(events);
   }
 
   bind(handler: IEventHandler<IEvent>, name: string) {
